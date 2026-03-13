@@ -1,0 +1,150 @@
+hostname MLSW1
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname MLSW2
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname IRODA1
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname IRODA2
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname SW10
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname SW20
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname SW30
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname SERVER_ROUTER
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname Switch0
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname INFO_SWITCH
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+hostname R_HOME
+ip domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+ip ssh version 2
+username admin secret Passw123
+access-list 1 permit 192.168.0.1 0.0.0.255
+access-list 1 deny any
+line vty 0 15
+login local
+transport input ssh
+access-class 1 in
+exit
+
+
+ASATELEP
+domain-name fixanddrive.hu
+crypto key generate rsa general-keys modulus 2048
+username admin password Passw123
+ssh 192.168.0.1 255.255.255.0
+aaa authentication ssh console LOCAL

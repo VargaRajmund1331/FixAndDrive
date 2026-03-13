@@ -1,0 +1,23 @@
+SERVER_ROUTER
+
+int g0/0
+ip nat inside
+exit
+int g0/1
+ip nat outside
+exit
+
+ip nat inside source static 192.168.40.100 11.11.11.23
+ip nat inside source static 192.168.50.100 11.11.11.24
+
+
+R_HOME
+
+int g0/1
+ip nat inside
+exit
+int g0/2
+ip nat outside
+exit
+access-list 1 permit 192.168.0.0 0.0.0.255
+ip nat inside source list 1 interface g0/2 overload

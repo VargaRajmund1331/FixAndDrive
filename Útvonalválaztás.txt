@@ -1,0 +1,87 @@
+SZERVERPARK forgalomirányítás
+
+SERVER_ROUTER
+ip route 0.0.0.0 0.0.0.0 11.11.11.1
+router ospf 100
+router-id 1.1.0.1
+Network 172.16.0.4 0.0.0.3 area 0
+default-information originate
+exit
+
+ASASRV
+router ospf 100
+router-id 1.1.0.2
+Network 172.16.0.4 255.255.255.252 area 0
+Network 192.168.40.0 255.255.255.0 area 0
+Network 192.168.50.0 255.255.255.0 area 0
+passive-interface vlan 40
+passive-interface vlan 50
+exit
+
+
+
+
+IRODA forgalomirányítás
+
+IRODA1
+ip route 0.0.0.0 0.0.0.0 22.22.22.1
+router ospf 100
+router-id 2.1.0.1
+network 10.0.0.16 0.0.0.3 area 0
+network 10.0.0.4 0.0.0.3 area 0
+network 10.0.0.12 0.0.0.3 area 0
+default-information originate
+exit
+
+IRODA2
+ip route 0.0.0.0 0.0.0.0 33.33.33.1
+router ospf 100
+router-id 2.1.0.2
+network 10.0.0.16 0.0.0.3 area 0
+network 10.0.0.8 0.0.0.3 area 0
+network 10.0.0.0 0.0.0.3 area 0
+default-information originate
+exit
+
+MLSW1
+ip routing
+router ospf 100
+router-id 2.1.0.3
+network 10.0.0.12 0.0.0.3 area 0
+network 10.0.0.8 0.0.0.3 area 0
+network 172.31.0.0 0.0.255.255 area 0
+Network 192.168.10.0 0.0.0.255 area 0
+Network 192.168.20.0 0.0.0.255 area 0
+Network 192.168.30.0 0.0.0.255 area 0
+passive-interface vlan 31
+passive-interface vlan 10
+passive-interface vlan 20
+passive-interface vlan 30
+exit
+
+MLSW2
+ip routing
+router ospf 100
+router-id 2.1.0.4
+network 10.0.0.4 0.0.0.3 area 0
+network 10.0.0.0 0.0.0.3 area 0
+Network 192.168.10.0 0.0.0.255 area 0
+Network 192.168.20.0 0.0.0.255 area 0
+Network 192.168.30.0 0.0.0.255 area 0
+passive-interface vlan 10
+passive-interface vlan 20
+passive-interface vlan 30
+exit
+
+
+
+HOME forgalomirányítás
+
+R_HOME
+
+hostname R_HOME
+ip route 0.0.0.0 0.0.0.0 44.44.44.1
+ip route 192.168.0.10 255.255.255.0 172.16.0.10
+ip route 192.168.0.20 255.255.255.0 172.16.0.10
+ip route 192.168.0.30 255.255.255.0 172.16.0.10
+ip route 172.31.0.0 255.255.0.0 172.16.0.10

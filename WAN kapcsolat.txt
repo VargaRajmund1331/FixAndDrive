@@ -1,0 +1,17 @@
+WAN KAPCSOLAT IRODA1-IRODA2
+IRODA1
+int s0/3/0
+ip add 10.0.0.17 255.255.255.252
+clock rate 800000
+encapsulation ppp
+no shu
+desc WAN_CONNECTION
+exit
+
+IRODA2
+int s0/3/0
+ip add 10.0.0.18 255.255.255.252
+encapsulation ppp
+no shu
+desc WAN_CONNECTION
+exit

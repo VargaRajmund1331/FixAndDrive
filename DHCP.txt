@@ -1,0 +1,41 @@
+MLSW1
+ip dhcp excluded-address 172.31.0.0 172.31.0.100
+ip dhcp excluded-address 192.168.10.0 192.168.10.20
+ip dhcp excluded-address 192.168.20.0 192.168.20.20
+ip dhcp excluded-address 192.168.30.0 192.168.30.20
+
+ip dhcp pool VENDEG_WIFI
+Network 172.31.0.0 255.255.0.0
+default-router 172.31.0.1
+dns-server 8.8.8.8
+exit
+
+ip dhcp pool IRODA
+Network 192.168.10.0 255.255.255.0
+default-router 192.168.10.3
+dns-server 8.8.8.8
+exit
+
+ip dhcp pool SZERVIZ
+Network 192.168.20.0 255.255.255.0
+default-router 192.168.20.3
+dns-server 8.8.8.8
+exit
+
+ip dhcp pool RAKTAR
+Network 192.168.30.0 255.255.255.0
+default-router 192.168.30.3
+dns-server 8.8.8.8
+exit
+
+
+ASA
+domain-name fixanddrive.hu
+crypto key generate RSA general-keys modulus 2048
+username admin password Passw123
+ssh 192.168.40.0 255.255.255.0
+aaa authentication ssh console LOCAL
+access-list 101 permit tcp any host 192.168.50.100 0.0.0.255 eq 20
+access-list 101 permit tcp any host 192.168.50.100 0.0.0.255 eq 21
+access-list 101 permit tcp any host 192.168.50.100 0.0.0.255 eq 80
+acccess-group 101 out interface SZERVERPARK

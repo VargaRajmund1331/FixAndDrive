@@ -1,0 +1,19 @@
+VPN R-Home-Iroda2 között
+GRE TUnnel segítségével 172.16.0.8/30
+
+R_HOME
+int Tunnel 1
+ip add 172.16.0.9 255.255.255.252
+tunnel source g0/2
+tunnel destination 33.33.33.33
+no shu
+exit
+
+Iroda2
+ip route 192.168.0.0 255.255.255.0 172.16.0.9
+int Tunnel 1
+ip add 172.16.0.10 255.255.255.252
+tunnel source g0/2
+tunnel destination 44.44.44.44
+no shu
+exit

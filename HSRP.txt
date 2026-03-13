@@ -1,0 +1,38 @@
+MLSW1
+int vlan 10
+standby version 2
+standby 10 ip 192.168.10.3
+standby 10 priority 110
+standby 10 preempt
+exit
+
+int vlan 20
+standby version 2
+standby 20 ip 192.168.20.3
+standby 20 priority 110
+standby 20 preempt
+exit
+
+int vlan 30
+standby version 2
+standby 30 ip 192.168.30.3
+standby 30 priority 110
+standby 30 preempt
+exit
+
+
+MLSW2
+int vlan 10
+standby version 2
+standby 10 ip 192.168.10.3
+exit
+
+int vlan 20
+standby version 2
+standby 20 ip 192.168.20.3
+exit
+
+int vlan 30
+standby version 2
+standby 30 ip 192.168.30.3
+exit

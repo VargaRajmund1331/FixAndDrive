@@ -1,0 +1,205 @@
+VLAN10	192.168.10.0/24		2001:db9:4444:10::0/64
+VLAN20	192.168.20.0/24		2001:db9:4444:20::0/64
+VLAN30	192.168.30.0/24		2001:db9:4444:30::0/64
+VENDEG_WIFI 172.31.0.0/16	2001:db9:4444:1720::0/64
+
+Eszköz
+
+IRODA1-MLSW1 10.0.0.12/30	2001:db9:4444:1012::0/64
+IRODA2-MLSW2 10.0.0.0/30	2001:db9:4444::1000::0/64
+IRODA1-MLSW2 10.0.0.4/30	2001:db9:4444::1004::0/64
+IRODA2-MLSW1 10.0.0.8/30	2001:db9:4444::1008::0/64
+IRODA1-IRODA2 10.0.0.16/30	2001:db9:4444::1016::0/64
+
+
+IRODA1
+
+ipv6 unicast-routing
+int g0/0
+ipv6 enable
+ipv6 add 2001:db9:4444:1012::1/64
+ipv6 add fe80::1 link-local
+exit
+int g0/1
+ipv6 enable
+ipv6 add 2001:db9:4444:1004::1/64
+ipv6 add fe80::1 link-local
+exit
+int s0/3/0
+ipv6 enable
+ipv6 add 2001:db9:4444:1016::1/64
+ipv6 add fe80::1 link-local
+exit
+
+
+
+IRODA2
+
+ipv6 unicast-routing
+int s0/3/0
+ipv6 enable
+ipv6 add 2001:db9:4444:1016::2/64
+ipv6 add fe80::2 link-local
+exit
+int g0/0
+ipv6 enable
+ipv6 add 2001:db9:4444:1008::1/64
+ipv6 add fe80::1 link-local
+exit
+int g0/1
+ipv6 enable
+ipv6 add 2001:db9:4444:1000::1/64
+ipv6 add fe80::1 link-local
+exit
+
+
+
+MLSW1
+
+ipv6 unicast-routing
+int g1/0/6
+ipv6 enable
+ipv6 add 2001:db9:4444:1012::2/64
+ipv6 add fe80::2 link-local
+exit
+int g1/0/7
+ipv6 enable
+ipv6 add 2001:db9:4444:1008::2/64
+ipv6 add fe80::2 link-local
+exit
+
+
+MLSW2
+
+ipv6 unicast-routing
+int g1/0/6
+ipv6 enable
+ipv6 add 2001:db9:4444:1004::2/64
+ipv6 add fe80::2 link-local
+exit
+int g1/0/7
+ipv6 enable
+ipv6 add 2001:db9:4444:1000::2/64
+ipv6 add fe80::2 link-local
+exit
+
+
+
+MLSW1
+
+int vlan 31
+ipv6 enable
+ipv6 add 2001:db9:4444:1720::1/64
+ipv6 add fe80::1 link-local
+exit
+int vlan 10
+ipv6 enable
+ipv6 add 2001:db9:4444:1010::1/64
+ipv6 add fe80::1 link-local
+exit
+int vlan 20
+ipv6 enable
+ipv6 add 2001:db9:4444:1020::1/64
+ipv6 add fe80::1 link-local
+exit
+int vlan 30
+ipv6 enable
+ipv6 add 2001:db9:4444:1030::1/64
+ipv6 add fe80::1 link-local
+exit
+
+
+MLSW2
+
+int vlan 10
+ipv6 enable
+ipv6 add 2001:db9:4444:1010::2/64
+ipv6 add fe80::2 link-local
+exit
+int vlan 20
+ipv6 enable
+ipv6 add 2001:db9:4444:1020::2/64
+ipv6 add fe80::2 link-local
+exit
+int vlan 30
+ipv6 enable
+ipv6 add 2001:db9:4444:1030::2/64
+ipv6 add fe80::2 link-local
+exit
+
+
+IPV6 forgalomirányítás
+
+IRODA1
+
+ipv6 router ospf 100
+exit
+int s0/3/0
+ipv6 ospf 100 area 0
+exit
+int g0/0
+ipv6 ospf 100 area 0
+exit
+int g0/1
+ipv6 ospf 100 area 0
+exit
+
+
+IRODA2
+
+ipv6 router ospf 100
+exit
+int s0/3/0
+ipv6 ospf 100 area 0
+exit
+int g0/0
+ipv6 ospf 100 area 0
+exit
+int g0/1
+ipv6 ospf 100 area 0
+exit
+
+
+MLSW1
+
+ipv6 router ospf 100
+exit
+int g1/0/7
+ipv6 ospf 100 area 0
+exit
+int g1/0/6
+ipv6 ospf 100 area 0
+exit
+int vlan 10
+ipv6 ospf 100 area 0
+exit
+int vlan 20
+ipv6 ospf 100 area 0
+exit
+int vlan 30
+ipv6 ospf 100 area 0
+exit
+int vlan 31
+ipv6 ospf 100 area 0
+exit
+
+
+MLSW2
+
+ipv6 router ospf 100
+exit
+int g1/0/7
+ipv6 ospf 100 area 0
+exit
+int g1/0/6
+ipv6 ospf 100 area 0
+exit
+int vlan 10
+ipv6 ospf 100 area 0
+exit
+int vlan 20
+ipv6 ospf 100 area 0
+exit
+int vlan 30
+ipv6 ospf 100 area 0
+exit

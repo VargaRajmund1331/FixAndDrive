@@ -1,0 +1,18 @@
+Rendszergazda jelszó: Passw123
+
+boot (standard) 	méret: 1024m
+swap (lvm)		méret: 4096m
+var (lvm)		méret: 4096m
+/ (lvm)			méret: 10G
+
+hostnamectl set-hostname fixanddrive-srv
+yum install vim-enhanced
+yum install dhcp-server
+yum install httpd
+systemctl start httpd
+systemctl enable httpd
+firewall-cmd --zone=Public --add-service=http
+firewall-cmd --zone=Public --add-service=http --permanent
+vim /etc/ssh/sshd_config
+PermitRootLogin yes #prohibit-password
+systemctl restart sshd
