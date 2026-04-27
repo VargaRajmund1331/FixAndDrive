@@ -1,0 +1,34 @@
+CISCO 2911 Routers (Útválasztók):
+ A telephelyek (Adatközpont, Iroda, Otthon) "kapui". 
+Összekötik a belső hálózatokat az Internettel (ISP), és biztosítják a telephelyek közötti közvetlen, 
+biztonságos kapcsolatot (GRE Tunnel). 
+Az irodai dupla router a folyamatos működést (redundanciát) garantálja vonalszakadás esetén.
+2911 -es router az útválasztás céljából szólgál.
+A 2960 -as switchek MAC Cím alapján lanon belül képes csak adatokat továbbítani.
+
+3650-24PS Multilayer Switchek (Maghálózat): 
+Az irodai hálózat központja. 
+Ezek útválasztásra is képes (Layer 3) eszközök, 
+amelyek az irodai VLAN-ok (részlegek) közötti gyors belső kommunikációt intézik, 
+tehermentesítve ezzel a routereket.
+2911 -es portok tökéletesek a GRE/VPN alagutakra. A 2960 -as switchek szoftveresen és hardveresen
+egyszerüen nem képesek ilyen feladatra.
+
+2960-24TT Switchek (Hozzáférési réteg): Hagyományos kapcsolók. 
+Feladatuk a végberendezések (PC-k, szerverek) fizikai csatlakoztatása és a megfelelő, 
+logikailag elkülönített hálózatokba (VLAN-okba) sorolása.
+
+AccessPoint-PT & WRT-300N (Vezeték nélküli / Otthoni): 
+Az AP az irodai mobil eszközöknek ad Wi-Fi hozzáférést a belső hálózathoz.
+A WRT-300N pedig egy "minden-egyben" otthoni (SOHO) eszköz, 
+ami egyszerre router, switch és Wi-Fi sugárzó.
+
+
+Szerverek és Végberendezések (Kliensek): 
+A szerverek izolált hálózatokban nyújtják a szolgáltatásokat (pl. IP cím kiosztás, weblapok). 
+A PC-k, laptopok és telefonok pedig arra szolgálnak, hogy demonstrálni tudd:
+ a hálózat él, a gépek kapnak IP címet és elérik egymást.
+
++1 Cisco ASA5506-X (Tűzfal): (A bal felső sarokban). 
+Ez egy dedikált biztonsági eszköz, amely az érzékeny adatközponti szervereket védi a külső,
+ internet felől érkező fenyegetésektől.
